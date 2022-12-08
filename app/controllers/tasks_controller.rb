@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @tasks = Task.all
+    @tasks = Task.order(priority: :asc)
 
     render json: @tasks
   end
@@ -31,6 +31,12 @@ class TasksController < ApplicationController
     else
       render json: @task.errors, status: :unprocessable_entity
     end
+  end
+
+  def reorder
+    Task.find(params[:id].to_i).insert_at(params[:position].to_i)
+
+    render status: 200
   end
 
   # DELETE /tasks/1
