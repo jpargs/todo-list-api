@@ -33,6 +33,7 @@ class TasksController < ApplicationController
     end
   end
 
+  # PATCH takes id and position params
   def reorder
     Task.find(params[:id].to_i).insert_at(params[:position].to_i)
 
@@ -52,6 +53,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:description, :priority)
+      params.require(:task).permit(:description)
     end
 end

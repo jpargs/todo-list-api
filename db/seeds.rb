@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+ActiveRecord::Base.connection.execute("TRUNCATE tasks RESTART IDENTITY")
+Task.create([{ description: 'Clean Room'}, { description: 'Play Video Games'}, { description: 'Work for 8 hours'}, { description: 'Change Bedsheets'}])
